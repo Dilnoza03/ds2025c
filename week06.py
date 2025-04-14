@@ -29,6 +29,7 @@ class Queue:
         self.front = self.front.link  # передвигаем front на следующий элемент
         if self.front is None:
             self.rear = None  # если очередь стала пустой — обнуляем rear
+        temp.link = None
         return temp.data
 
 q = Queue()
