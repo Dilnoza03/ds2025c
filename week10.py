@@ -1,8 +1,8 @@
 class TreeNode:
-	def __init__(self):
-		self.left = None
-		self.data = None
-		self.right = None
+    def __init__(self):
+        self.left = None
+        self.data = None
+        self.right = None
 
 def pre_order(node):
     if node is None:
@@ -48,9 +48,7 @@ def insert(root, value):
             current = current.right  # move
     return root
 
-
-def search():
-    find_number = int(input("찾고자 하는 값 : "))
+def search(find_number):
 
     current = root
     while True:
@@ -76,6 +74,7 @@ if __name__ == "__main__":
     for number in numbers:
         root = insert(root, number)
 
+
     print("BST 구성 완료")
     post_order(root)  # 3->9->8->15->10
     print()
@@ -83,4 +82,6 @@ if __name__ == "__main__":
     print()
     pre_order(root)  # 10->8->3->9->15
     print()
-    search()
+
+    number = int(input(("찾을 값 입력 : ")))
+    search(number)
