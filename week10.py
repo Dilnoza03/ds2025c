@@ -27,14 +27,14 @@ def post_order(node):
         print(node.data, end='->')
 
 
-def insert(root, value):
+def insert(node, value):
     new_node = TreeNode()
     new_node.data = value
 
-    if root is None:  # 첫 번째 노드일때 처리
+    if node is None:  # 첫 번째 노드일때 처리
         return new_node
 
-    current = root
+    current = node
     while True:
         if value < current.data:
             if current.left is None:
@@ -46,7 +46,7 @@ def insert(root, value):
                 current.right = new_node
                 break
             current = current.right  # move
-    return root
+    return node
 
 def search(find_number):
 
@@ -64,8 +64,23 @@ def search(find_number):
             current = current.right
 
 
+def delete(node, value):
+    if node is None:
+        return None
+    if value < node.data:
+        node.left = delete(node.left, value)
+    elif value > node.data:
+        node.right = delete(node.right, value)
+    else: # 삭제할 노드 발견
+        # 자식 노드가 1개 이거나 leaf 노드인 경우
+        if node.left is  None:
+            return node.right
+        elif node.right is None:
+            return node.left
+    return node
+
 if __name__ == "__main__":
-    numbers = [10, 15, 8, 3, 9]
+    numbers = [10, 15, 8, 3, 9, 14]
     root = None
 
     for number in numbers:
@@ -80,8 +95,19 @@ if __name__ == "__main__":
     pre_order(root)  # 10->8->3->9->15
     print()
 
-    number = int(input(("찾는 값 입력 : ")))
-    if  search(number):
-        print(f"{number}을(를) 찾았습니다")
+    find_number = int(input("찾는 값 입력 : "))
+    if search(find_number):
+        print(f"{find_number}을(를) 찾았습니다")
     else:
-        print(f"{number}이(가) 존재하지 않습니다")
+        print(f"{find_number}이(가) 존재하지 않습니다")
+
+    delete_number = int(input("제가할 값 입력 : "))
+    root = delete(root, delete_number)
+
+    in_order(root)  # 3->8->9->10->15
+    print()
+
+    in_order(root)  # 3->8->9->10->15
+    print()
+    pre_order(root)  # 10->8->3->9->15
+    print()
