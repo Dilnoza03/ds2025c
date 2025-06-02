@@ -1,9 +1,9 @@
 class Graph:
-	def __init__ (self, size):
+	def __init__(self, size):
 		self.graph = [[0 for _ in range(size)] for _ in range(size)]
 
 class DisjointSet:
-	def __init__ (self, n):
+	def __init__(self, n):
 		self.parrent = [i for i in range(n)]
 
 	def find(self, x):
@@ -91,3 +91,7 @@ for i in range(graph_size):
 
 total_cost = total_cost // 2
 print(f"최소 비용 :  {mst_cost}")
+
+print(f"\n최소 간선 목록")
+for cost , s, e in mst_edges:
+	print(f"{cities[s]} --- {cities[e]} : {cost}")
